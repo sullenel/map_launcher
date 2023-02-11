@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:map_launcher/src/models.dart';
 import 'package:map_launcher/src/utils.dart';
 
@@ -221,6 +222,12 @@ String getMapMarkerUrl({
               '${coords.latitude},${coords.longitude}${title != null && title.isNotEmpty ? '($title)' : ''}',
           ...(extraParams ?? {}),
         },
+      );
+
+    case MapType.bolt:
+      return Utils.buildUrl(
+        url: 'geo:${coords.latitude},${coords.longitude}',
+        queryParams: {...?extraParams},
       );
   }
 }

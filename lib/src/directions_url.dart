@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:map_launcher/src/models.dart';
 import 'package:map_launcher/src/utils.dart';
 
@@ -241,5 +242,11 @@ String getMapDirectionsUrl({
         },
         // the TomTom Go app cannot handle the ? at the start of the query
       ).replaceFirst('?', '');
+
+    case MapType.bolt:
+      return Utils.buildUrl(
+        url: 'geo:${destination.latitude},${destination.longitude}',
+        queryParams: {...?extraParams},
+      );
   }
 }
