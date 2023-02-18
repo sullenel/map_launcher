@@ -225,9 +225,9 @@ String getMapMarkerUrl({
       );
 
     case MapType.bolt:
-      return Utils.buildUrl(
-        url: 'geo:${coords.latitude},${coords.longitude}',
-        queryParams: {...?extraParams},
-      );
+      final url = Platform.isIOS
+          ? 'bolt://' // no info on what should be passed here
+          : 'geo:${coords.latitude},${coords.longitude}';
+      return Utils.buildUrl(url: url, queryParams: {...?extraParams});
   }
 }

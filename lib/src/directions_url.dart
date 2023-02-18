@@ -244,9 +244,9 @@ String getMapDirectionsUrl({
       ).replaceFirst('?', '');
 
     case MapType.bolt:
-      return Utils.buildUrl(
-        url: 'geo:${destination.latitude},${destination.longitude}',
-        queryParams: {...?extraParams},
-      );
+      final url = Platform.isIOS
+          ? 'bolt://' // no docs about what should be passed here
+          : 'geo:${destination.latitude},${destination.longitude}';
+      return Utils.buildUrl(url: url, queryParams: {...?extraParams});
   }
 }
